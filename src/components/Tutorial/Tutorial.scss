@@ -1,3 +1,6 @@
+@import '../../styles/colors';
+@import '../../styles/shapes';
+
 .tutorial {
   min-height: 300px;
   padding: 20px
@@ -28,9 +31,9 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  -webkit-box-shadow: 0px 4px 14px -2px rgba(0,0,0,0.69);
-  -moz-box-shadow: 0px 4px 14px -2px rgba(0,0,0,0.69);
-  box-shadow: 0px 4px 14px -2px rgba(0,0,0,0.69);
+  -webkit-box-shadow: 0 4px 14px -2px rgba(0,0,0,0.69);
+  -moz-box-shadow: 0 4px 14px -2px rgba(0,0,0,0.69);
+  box-shadow: 0 4px 14px -2px rgba(0,0,0,0.69);
 }
 
 .numberInnerBlock {
@@ -78,42 +81,7 @@
   border-radius: 8px;
   min-height: 600px;
   margin-bottom: 20px;
-  padding: 10px;
-}
-
-.squareRed {
-  width: 300px;
-  height: 300px;
-  background: red;
-}
-
-.circleBlue {
-  width: 300px;
-  height: 300px;
-  background: blue;
-  border-radius: 50%;
-}
-
-.triangleGreen {
-  width: 100px;
-  height: 100px;
-  border-left: 100px solid transparent;
-  border-right: 100px solid transparent;
-  border-bottom: 100px solid green;
-}
-
-.circleYellow {
-  width: 300px;
-  height: 300px;
-  background: yellow;
-  border-radius: 50%;
-}
-
-.squareYellow {
-  width: 300px;
-  height: 300px;
-  background: pink;
-  border-radius: 50%;
+  padding: 40px;
 }
 
 .tabsCircleContainer {

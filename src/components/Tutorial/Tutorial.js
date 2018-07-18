@@ -3,79 +3,47 @@ import { Tab, Row, Col, Nav, NavItem, Button } from 'react-bootstrap';
 import arrow from '../../assets/next.svg';
 import styles from './Tutorial.scss';
 
+import { tabs } from './../../constants/constants';
+
 class Tutorial extends Component {
     state = {
         activeTab: '1',
-        tabs: [
-            {
-                eventKey: '1',
-                title: 'Module',
-                desc: 'The most basic element'
-            },
-            {
-                eventKey: '2',
-                title: 'Connection',
-                desc: 'Links between modules'
-            },
-            {
-                eventKey: '3',
-                title: 'Global Connection',
-                desc: 'The other flow fof links'
-            },
-            {
-                eventKey: '4',
-                title: 'NLU - Bot training',
-                desc: 'Your bot is smart'
-            },
-            {
-                eventKey: '5',
-                title: 'Channels',
-                desc: 'Where to publish your bot'
-            }
-        ],
         tabsContent: [
             {
                 eventKey: '1',
-                figure: 'squareRed'
+                figure: 'square',
+                activeColor: 'red',
+                colors: ['red', 'blue', 'green', 'yellow', 'pink']
             },
             {
                 eventKey: '2',
-                figure: 'circleBlue'
+                figure: 'circle',
+                activeColor: 'red',
+                colors: ['red', 'blue', 'green', 'yellow', 'pink']
             },
             {
                 eventKey: '3',
-                figure: 'triangleGreen'
+                figure: 'rectangle',
+                activeColor: 'red',
+                colors: ['red', 'blue', 'green', 'yellow', 'pink']
             },
             {
                 eventKey: '4',
-                figure: 'circleYellow'
+                figure: 'oval',
+                activeColor: 'red',
+                colors: ['red', 'blue', 'green', 'yellow', 'pink']
             },
             {
                 eventKey: '5',
-                figure: 'squareYellow'
-            },
-        ],
-        tabCircles: [
-            {
-                eventKey: '1'
-            },
-            {
-                eventKey: '2'
-            },
-            {
-                eventKey: '3'
-            },
-            {
-                eventKey: '4'
-            },
-            {
-                eventKey: '5'
+                figure: 'parallelogram',
+                activeColor: 'red',
+                colors: ['red', 'blue', 'green', 'yellow', 'pink']
             },
         ]
     };
 
     renderTabs = () => {
-        return this.state.tabs.map((item, i) => {
+        return tabs.map((item, i) => {
             return (
                 <NavItem eventKey={item.eventKey} key={i}>
                     <div className={styles.navItemContent}>
@@ -103,23 +71,21 @@ class Tutorial extends Component {
     };
 
     renderTabsContent = () => {
-        return this.state.tabsContent.map((item, i) => {
+        return this.state.tabsContent.map((item, itemIndex) => {
             return (
-                <Tab.Pane eventKey={item.eventKey} key={i}>
+                <Tab.Pane eventKey={item.eventKey} key={itemIndex}>
                     <div className={styles.tabContent}>
-                        <div className={styles[item.figure]}/>
+                        <div className={`${styles[item.figure]} ${styles[item.activeColor]}`}/>
+                    </div>
+                    <div className={styles.tabsCircleContainer}>
+                        { item.colors.map((color, colorIndex) => {
+                            return <div key={colorIndex}
+                                        className={`${styles.tabsCircle} ${color === item.activeColor ? styles.tabsCircleActive : ''}`}
+                                        onClick={() => this.handleChangeColor(itemIndex, color)}
+                            />
+                        })}
                     </div>
                 </Tab.Pane>
-            )
-        })
-    };
-
-    renderCircles = () => {
-        return this.state.tabCircles.map((item, i) => {
-            return (
-                <NavItem eventKey={item.eventKey} key={i}>
-                    <div className={`${styles.tabsCircle} ${this.state.activeTab ===  item.eventKey ? styles['tabsCircleActive'] : '' }`}/>
-                </NavItem>
             )
         })
     };
@@ -130,11 +96,20 @@ class Tutorial extends Component {
         })
     };
 
+    handleChangeColor = (itemIndex, color) => {
+        const tabsContent = this.state.tabsContent;
+        tabsContent[itemIndex].activeColor = color;
+
+        this.setState({
+            tabsContent
+        });
+    };
+
     handleNextTab = () => {
         if (this.state.activeTab === '5') return;
 
         this.setState({
-            activeTab: +this.state.activeTab + 1 + ''
+            activeTab: (+this.state.activeTab + 1).toString()
         })
     };
 
@@ -156,14 +131,9 @@ class Tutorial extends Component {
                             </Nav>
                         </Col>
                         <Col sm={8}>
-                            <Tab.Content animation>
+                            <Tab.Content>
                                 {this.renderTabsContent()}
                             </Tab.Content>
-                        </Col>
-                        <Col sm={8} smOffset={4}>
-                            <Nav bsStyle="tabs" bsClass={styles.tabsCircleContainer}>
-                                {this.renderCircles()}
-                            </Nav>
                         </Col>
                     </Row>
                 </Tab.Container>

@@ -1,0 +1,29 @@
+.square {
+  width: 300px;
+  height: 300px;
+}
+
+.circle {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+}
+
+.rectangle {
+  width: 300px;
+  height: 100px;
+}
+
+.oval {
+  width: 300px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.parallelogram {
+  width: 150px;
+  height: 100px;
+  -webkit-transform: skew(-20deg);
+  -moz-transform: skew(-20deg);
+  -o-transform: skew(-20deg);
+}
