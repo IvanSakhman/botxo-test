@@ -36,23 +36,40 @@ class Tutorial extends Component {
         tabsContent: [
             {
                 eventKey: '1',
-                figure: 'square'
+                figure: 'squareRed'
             },
             {
                 eventKey: '2',
-                figure: 'square'
+                figure: 'circleBlue'
             },
             {
                 eventKey: '3',
-                figure: 'square'
+                figure: 'triangleGreen'
             },
             {
                 eventKey: '4',
-                figure: 'square'
+                figure: 'circleYellow'
             },
             {
                 eventKey: '5',
-                figure: 'square'
+                figure: 'squareYellow'
+            },
+        ],
+        tabCircles: [
+            {
+                eventKey: '1'
+            },
+            {
+                eventKey: '2'
+            },
+            {
+                eventKey: '3'
+            },
+            {
+                eventKey: '4'
+            },
+            {
+                eventKey: '5'
             },
         ]
     };
@@ -97,6 +114,16 @@ class Tutorial extends Component {
         })
     };
 
+    renderCircles = () => {
+        return this.state.tabCircles.map((item, i) => {
+            return (
+                <NavItem eventKey={item.eventKey} key={i}>
+                    <div className={`${styles.tabsCircle} ${this.state.activeTab ===  item.eventKey ? styles['tabsCircleActive'] : '' }`}/>
+                </NavItem>
+            )
+        })
+    };
+
     handleSelect = (activeTab) => {
         this.setState({
             activeTab: activeTab + ''
@@ -132,6 +159,11 @@ class Tutorial extends Component {
                             <Tab.Content animation>
                                 {this.renderTabsContent()}
                             </Tab.Content>
+                        </Col>
+                        <Col sm={8} smOffset={4}>
+                            <Nav bsStyle="tabs" bsClass={styles.tabsCircleContainer}>
+                                {this.renderCircles()}
+                            </Nav>
                         </Col>
                     </Row>
                 </Tab.Container>
