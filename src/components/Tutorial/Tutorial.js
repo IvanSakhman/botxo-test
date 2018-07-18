@@ -6,10 +6,6 @@ import styles from './Tutorial.scss';
 import { tabs, tabsContent } from './../../constants/constants';
 
 class Tutorial extends Component {
-    state = {
-        activeTab: '1'
-    };
-
     renderTabs = () => {
         return tabs.map((item, i) => (
             <NavItem eventKey={item.eventKey} key={i}>
@@ -24,7 +20,7 @@ class Tutorial extends Component {
                         <p className={styles.tabDesc}>{item.desc}</p>
                     </div>
                     {
-                        this.state.activeTab === item.eventKey ?
+                        this.props.activeTab === item.eventKey ?
                             <div className={styles.tabArrow}>
                                 <img className={styles.img} src={arrow} alt="arrow"/>
                             </div> : null
@@ -41,29 +37,25 @@ class Tutorial extends Component {
                     <div className={`${item.figure} ${this.props.tabsContent[itemIndex].activeColor}`}/>
                 </div>
                 <div className={styles.tabsCircleContainer}>
-                    { item.colors.map((color, colorIndex) => {
-                        return <div key={colorIndex}
-                                    className={`${styles.tabsCircle} ${color === this.props.tabsContent[itemIndex].activeColor ? styles.tabsCircleActive : ''}`}
-                                    onClick={() => this.props.changeColor({ itemIndex, color})}
+                    { item.colors.map((color, colorIndex) => (
+                        <div key={colorIndex}
+                            className={`${styles.tabsCircle} ${color === this.props.tabsContent[itemIndex].activeColor ? styles.tabsCircleActive : ''}`}
+                            onClick={() => this.props.changeColor({ itemIndex, color})}
                         />
-                    })}
+                    ))}
                 </div>
             </Tab.Pane>
         ))
     };
 
     handleSelect = (activeTab) => {
-        this.setState({
-            activeTab: activeTab + ''
-        })
+        this.props.changeActiveTab(activeTab)
     };
 
     handleNextTab = () => {
-        if (this.state.activeTab === '5') return;
+        if (this.props.activeTab === '5') return;
 
-        this.setState({
-            activeTab: (+this.state.activeTab + 1).toString()
-        })
+        this.props.incrementActiveTab()
     };
 
     render() {
@@ -74,7 +66,7 @@ class Tutorial extends Component {
 
                 <Tab.Container
                     id="tabs-with-dropdown"
-                    activeKey={this.state.activeTab}
+                    activeKey={this.props.activeTab}
                     onSelect={this.handleSelect}
                 >
                     <Row className="clearfix">

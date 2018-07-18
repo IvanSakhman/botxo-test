@@ -9,7 +9,7 @@ Enzyme.configure({ adapter: new Adapter() });
 import Tutorial from './TutorialContainer';
 
 const initialState = {
-    home: {
+    tutorial: {
         tabsContent: [
             {
                 activeColor: 'red',
