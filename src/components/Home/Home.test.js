@@ -1,13 +1,17 @@
 import React from 'react'
-import {render} from 'enzyme'
-import {expect} from 'chai'
+import Enzyme, { render } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-15';
 
-import Home from './Home'
+import { expect } from 'chai'
 
-describe('Home', () => {
+Enzyme.configure({ adapter: new Adapter() });
+
+import Home from './Home';
+
+describe('<Home />', () => {
     it('should render text', () => {
         const wrapper = render(<Home />);
 
-        expect(wrapper).to.have.text('Open modal')
+        expect(wrapper).to.have.lengthOf(1);
     })
-})
+});

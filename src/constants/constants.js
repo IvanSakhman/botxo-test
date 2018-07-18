@@ -25,3 +25,31 @@ export const tabs = [
         desc: 'Where to publish your bot'
     }
 ];
+
+export const tabsContent = [
+    {
+        eventKey: '1',
+        figure: 'square',
+        colors: ['red', 'blue', 'green', 'yellow', 'pink']
+    },
+    {
+        eventKey: '2',
+        figure: 'circle',
+        colors: ['red', 'blue', 'green', 'yellow', 'pink']
+    },
+    {
+        eventKey: '3',
+        figure: 'rectangle',
+        colors: ['red', 'blue', 'green', 'yellow', 'pink']
+    },
+    {
+        eventKey: '4',
+        figure: 'oval',
+        colors: ['red', 'blue', 'green', 'yellow', 'pink']
+    },
+    {
+        eventKey: '5',
+        figure: 'parallelogram',
+        colors: ['red', 'blue', 'green', 'yellow', 'pink']
+    },
+];

@@ -1,10 +1,37 @@
+import { CHANGE_COLOR } from './../actions/homeActions';
+
 const initialState = {
-    counter: 0
+    tabsContent: [
+        {
+            activeColor: 'red',
+        },
+        {
+            activeColor: 'red',
+        },
+        {
+            activeColor: 'red',
+        },
+        {
+            activeColor: 'red',
+        },
+        {
+            activeColor: 'red',
+        },
+    ]
 };
 
-export default function home(state = initialState, action) {
+export default function tutorial(state = initialState, action) {
     switch (action.type) {
+        case CHANGE_COLOR:
+            const { tabsContent } = state;
+            const { itemIndex, color } = action.payload;
 
+            tabsContent[itemIndex].activeColor = color;
+
+            return {
+                ...state,
+                tabsContent
+            };
         default:
             return state;
     }

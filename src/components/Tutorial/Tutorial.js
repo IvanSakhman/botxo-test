@@ -3,106 +3,59 @@ import { Tab, Row, Col, Nav, NavItem, Button } from 'react-bootstrap';
 import arrow from '../../assets/next.svg';
 import styles from './Tutorial.scss';
 
-import { tabs } from './../../constants/constants';
+import { tabs, tabsContent } from './../../constants/constants';
 
 class Tutorial extends Component {
     state = {
-        activeTab: '1',
-        tabsContent: [
-            {
-                eventKey: '1',
-                figure: 'square',
-                activeColor: 'red',
-                colors: ['red', 'blue', 'green', 'yellow', 'pink']
-            },
-            {
-                eventKey: '2',
-                figure: 'circle',
-                activeColor: 'red',
-                colors: ['red', 'blue', 'green', 'yellow', 'pink']
-            },
-            {
-                eventKey: '3',
-                figure: 'rectangle',
-                activeColor: 'red',
-                colors: ['red', 'blue', 'green', 'yellow', 'pink']
-            },
-            {
-                eventKey: '4',
-                figure: 'oval',
-                activeColor: 'red',
-                colors: ['red', 'blue', 'green', 'yellow', 'pink']
-            },
-            {
-                eventKey: '5',
-                figure: 'parallelogram',
-                activeColor: 'red',
-                colors: ['red', 'blue', 'green', 'yellow', 'pink']
-            },
-        ]
+        activeTab: '1'
     };
 
     renderTabs = () => {
-        return tabs.map((item, i) => {
-            return (
-                <NavItem eventKey={item.eventKey} key={i}>
-                    <div className={styles.navItemContent}>
-                        <div className={styles.numberOuterBlock}>
-                            <div className={styles.numberInnerBlock}>
-                                {item.eventKey}
-                            </div>
+        return tabs.map((item, i) => (
+            <NavItem eventKey={item.eventKey} key={i}>
+                <div className={styles.navItemContent}>
+                    <div className={styles.numberOuterBlock}>
+                        <div className={styles.numberInnerBlock}>
+                            {item.eventKey}
                         </div>
-                        <div className={styles.tabInfoBlock}>
-                            <p className={styles.tabTitle}>{item.title}</p>
-                            <p className={styles.tabDesc}>{item.desc}</p>
-                        </div>
-                        {
-                            this.state.activeTab === item.eventKey ?
-                                <div className={styles.tabArrow}>
-                                    <img className={styles.img} src={arrow} alt="arrow"/>
-                                </div>
-                                :
-                                null
-                        }
                     </div>
-                </NavItem>
-            )
-        })
+                    <div className={styles.tabInfoBlock}>
+                        <p className={styles.tabTitle}>{item.title}</p>
+                        <p className={styles.tabDesc}>{item.desc}</p>
+                    </div>
+                    {
+                        this.state.activeTab === item.eventKey ?
+                            <div className={styles.tabArrow}>
+                                <img className={styles.img} src={arrow} alt="arrow"/>
+                            </div> : null
+                    }
+                </div>
+            </NavItem>
+        ))
     };
 
     renderTabsContent = () => {
-        return this.state.tabsContent.map((item, itemIndex) => {
-            return (
-                <Tab.Pane eventKey={item.eventKey} key={itemIndex}>
-                    <div className={styles.tabContent}>
-                        <div className={`${styles[item.figure]} ${styles[item.activeColor]}`}/>
-                    </div>
-                    <div className={styles.tabsCircleContainer}>
-                        { item.colors.map((color, colorIndex) => {
-                            return <div key={colorIndex}
-                                        className={`${styles.tabsCircle} ${color === item.activeColor ? styles.tabsCircleActive : ''}`}
-                                        onClick={() => this.handleChangeColor(itemIndex, color)}
-                            />
-                        })}
-                    </div>
-                </Tab.Pane>
-            )
-        })
+        return tabsContent.map((item, itemIndex) => (
+            <Tab.Pane eventKey={item.eventKey} key={itemIndex}>
+                <div className={styles.tabContent}>
+                    <div className={`${item.figure} ${this.props.tabsContent[itemIndex].activeColor}`}/>
+                </div>
+                <div className={styles.tabsCircleContainer}>
+                    { item.colors.map((color, colorIndex) => {
+                        return <div key={colorIndex}
+                                    className={`${styles.tabsCircle} ${color === this.props.tabsContent[itemIndex].activeColor ? styles.tabsCircleActive : ''}`}
+                                    onClick={() => this.props.changeColor({ itemIndex, color})}
+                        />
+                    })}
+                </div>
+            </Tab.Pane>
+        ))
     };
 
     handleSelect = (activeTab) => {
         this.setState({
             activeTab: activeTab + ''
         })
-    };
-
-    handleChangeColor = (itemIndex, color) => {
-        const tabsContent = this.state.tabsContent;
-        tabsContent[itemIndex].activeColor = color;
-
-        this.setState({
-            tabsContent
-        });
     };
 
     handleNextTab = () => {
