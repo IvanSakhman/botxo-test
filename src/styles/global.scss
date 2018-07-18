@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.modal-dialog {
+  width: 90%;
+  max-width: 1200px;
+}
+
+.nav-tabs {
+  border: none;
+}
+
+.nav-tabs > li {
+  width: 100%;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover {
+  border: 1px solid transparent;
+  background: #F5F5F5;
+  border-radius: 0;
+}
