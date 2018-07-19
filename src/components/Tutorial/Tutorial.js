@@ -40,7 +40,7 @@ class Tutorial extends Component {
                     { item.colors.map((color, colorIndex) => (
                         <div key={colorIndex}
                             className={`${styles.tabsCircle} ${color === this.props.tabsContent[itemIndex].activeColor ? styles.tabsCircleActive : ''}`}
-                            onClick={() => this.props.changeColor({ itemIndex, color})}
+                            onClick={() => this.props.changeColor({ itemIndex, color })}
                         />
                     ))}
                 </div>
@@ -55,7 +55,7 @@ class Tutorial extends Component {
     handleNextTab = () => {
         if (this.props.activeTab === '5') return;
 
-        this.props.incrementActiveTab()
+        this.props.incrementActiveTab();
     };
 
     render() {
