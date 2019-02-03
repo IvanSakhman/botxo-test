@@ -1,4 +1,4 @@
-import { CHANGE_COLOR, CHANGE_ACTIVE_TAB, INCREMENT_ACTIVE_TAB } from './../actions/homeActions';
+import { CHANGE_COLOR, CHANGE_ACTIVE_TAB, INCREMENT_ACTIVE_TAB } from '../actions/tutorialActions';
 
 const initialState = {
     tabsContent: [

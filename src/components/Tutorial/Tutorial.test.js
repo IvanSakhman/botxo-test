@@ -12,7 +12,7 @@ import {
     changeColor,
     changeActiveTab,
     incrementActiveTab
-} from './../../actions/homeActions';
+} from '../../actions/tutorialActions';
 
 Enzyme.configure({ adapter: new Adapter() });
 import Tutorial from './TutorialContainer';

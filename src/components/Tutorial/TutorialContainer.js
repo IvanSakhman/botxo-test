@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Tutorial from './Tutorial';
 
-import { changeColor, changeActiveTab, incrementActiveTab } from '../../actions/homeActions';
+import { changeColor, changeActiveTab, incrementActiveTab } from '../../actions/tutorialActions';
 
 const mapStateToProps = state => ({
     tabsContent: state.tutorial.tabsContent,
@@ -19,6 +19,8 @@ const mapDispatchToProps = dispatch => ({
         dispatch(incrementActiveTab(data));
     }
 });
+
+
 
 const TutorialContainer = connect(
     mapStateToProps,
